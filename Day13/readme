@@ -1,0 +1,124 @@
+一、ORM
+	
+	连表
+		一对多
+		
+		1、创建表，主动指定外键约束
+		2、操作
+				类：repr
+			   单表
+					
+			   连表
+					session.query(表1).join(表2).all()
+		
+		
+		多对多
+			1、创建表，额外的关系表
+			2、filter()
+					==
+					int_（ 都可以是另外一个查询）
+			3、relationship
+			
+				A
+				AB ==> fk, 关系
+				B
+			4、简单
+				
+				A   关系(B,ABTable对象)
+				AB ==>fk, 
+				B
+				操作时，简单
+			
+				Table对象：
+					
+					A   关系(B,Table对象方法)
+					Table对象方法 AB ==>fk, 
+					B
+					操作时，简单
+			
+			
+				
+					A   关系(B,AB.__table__)
+					AB ==>fk, 
+					B
+					操作时，简单
+			
+	1、创建表
+	2、操作表
+		#单表
+		
+		#连表
+			.join
+			关系：
+				一对多
+					fk，关系
+				多对多，
+					多一张表 fk，fk
+					1、 关系表：关系
+					
+					2、A：关系，（B，AB）
+					
+				
+二、paramiko模块
+
+	SSHClient
+		用户名、密码：
+			SSHClient,Tranport
+	SFTPClient:
+		用户名、密码 
+			Tranport
+
+	需求：
+		命令、上传文件、命令
+		import paramiko
+   
+   
+   Tranport
+	
+   Tranport关闭
+		# 创建SSH对象
+		ssh = paramiko.SSHClient()
+		# 允许连接不在know_hosts文件中的主机
+		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+		# 连接服务器
+		ssh.connect(hostname='c1.salt.com', port=22, username='wupeiqi', password='123')
+		   
+		# 执行命令
+		stdin, stdout, stderr = ssh.exec_command('ls')
+		# 获取命令结果
+		result = stdout.read()
+		   
+		# 关闭连接
+		ssh.close()
+
+		import paramiko
+		  
+		transport = paramiko.Transport(('hostname',22))
+		transport.connect(username='wupeiqi',password='123')
+		  
+		sftp = paramiko.SFTPClient.from_transport(transport)
+		# 将location.py 上传至服务器 /tmp/test.py
+		sftp.put('/tmp/location.py', '/tmp/test.py')
+		# 将remove_path 下载到本地 local_path
+		sftp.get('remove_path', 'local_path')
+		  
+		transport.close()
+
+
+		ssh = paramiko.SSHClient()
+		# 允许连接不在know_hosts文件中的主机
+		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+		# 连接服务器
+		ssh.connect(hostname='c1.salt.com', port=22, username='wupeiqi', password='123')
+		   
+		# 执行命令
+		stdin, stdout, stderr = ssh.exec_command('ls')
+		# 获取命令结果
+		result = stdout.read()
+		   
+		# 关闭连接
+		ssh.close()
+	连接：
+		堡垒机
+		
+三、前端：HTMl

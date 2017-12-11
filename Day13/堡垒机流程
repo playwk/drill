@@ -1,0 +1,20 @@
+一、堡垒机服务器
+
+二、将程序 s7.py
+
+三、audit   ./.bashrc
+	/usr/bin/env python s7.py
+	logout
+	
+四、登录 堡垒机服务器
+
+	audit，
+	
+	/usr/bin/env python s7.py
+	
+	用户输入：目标机器，用户名，密码
+	
+	
+	
+	
+		

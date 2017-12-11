@@ -1,0 +1,7 @@
+[master12.12.12.128]
+DatadirStatu=/var/lib/mysql/ 77%%
+Status=Threads: 1  Questions: 289  Slow queries: 0  Opens: 1303  Flush tables: 1  Open tables: 64  Queries per second avg: 0.0
+Uptime= 14 days 13 hours 4 min
+zabbix=6.9844
+CurrentConn=1
+Max_used_connections=1

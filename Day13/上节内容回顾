@@ -1,0 +1,60 @@
+redis发布订阅
+
+rabbitMQ
+	原始队列
+	exchange
+		ex全部转发
+		ex，关键字
+		ex，模糊匹配
+	rpc
+		｛｝
+		
+MySQL
+	
+python MySQL
+	pymysql
+		excute
+		row  = excutemany
+		
+		fetchone
+		fetchall
+		fetchmany
+		
+		scroll
+		
+		lastrowid
+	
+	SQLAlchemy
+		ORM
+			db first
+			code first
+			===> 我们以后通过类和对象操作数据库
+			code first
+			1、自定生成表
+				
+				class 类（base）：
+					列1
+					列2
+					
+				根据类去创建表吧。。。
+				
+				
+			2、使用类操作表
+		
+				session.query(类).
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+	

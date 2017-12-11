@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="http://192.168.11.88:8000/index/" method="post">
+    <div style="border: 1px solid red;">
+        <p>username: <input type="text" name="username"/> </p>
+        <p>password: <input type="password" name="password"/></p>
+        <p> sex：
+            <br />boy <input type="radio" name="sex" value="0"/>
+            <br />girl <input type="radio" name="sex" value="1"/>
+        </p>
+        <p> hobby:
+            <br />sinning <input type="checkbox" name="hobby" value="1"/>
+            <br />painting <input type="checkbox" name="hobby" value="2"/>
+            <br />writing <input type="checkbox" name="hobby" value="3"/>
+            <br />dancing <input type="checkbox" name="hobby" value="4"/>
+        </p>
+        <p> city:
+            <select name="city">
+                <option value="1">BeiJing</option>
+                <option value="2">ShangHai</option>
+                <option value="3">GuangZhou</option>
+            </select>
+        </p>
+        <p> multiaddress:
+            <select name="multiaddress">
+                <optgroup label="Beijing">
+                    <option value="1">HuiLongGuan</option>
+                    <option value="2">ShangDi</option>
+                    <option value="3">ShangHe</option>
+                </optgroup>
+                <optgroup label="GuangZhou">
+                    <option value="4">AAA</option>
+                    <option value="5">BBB</option>
+                    <option value="6">CCC</option>
+                </optgroup>
+            </select>
+        </p>
+        <p>
+            Upload: <input type="file" />
+        </p>
+        <p>
+            TextArea: <textarea name="info"></textarea>
+        </p>
+        <p>
+            Submit: <input type="submit" value="submit"/>
+        </p>
+        <p>
+            Button: <input type="button" value="button"/>
+        </p>
+        <p>
+            Reset: <input type="reset" value="reset"/>
+        </p>
+    </div>
+</form>
+</body>
+</html>
