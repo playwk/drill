@@ -12,6 +12,7 @@ import datetime
 import xlrd, xlwt
 from xlutils.copy import copy
 import configparser
+import pymysql
 
 nowtime = datetime.datetime.now().strftime('%Y%m%d')
 
@@ -79,7 +80,17 @@ def put_new_value():
     ws.write(7, 2, load_status('slave', 'SyncStatus'), style)
     wb.save('mmc_db_check.xls')
 
+def test():
+    conn = pymysql.connect(host='12.12.12.129', port=3306,
+                           user='root', password='key@1234'
+                           )
+    cur = conn.cursor()
+    cur.execute("show status like 'Max_used_connections';")
+    max_used_conn = cur.fetchall()[0][1]
+    print(max_used_conn)
+
 if __name__ == '__main__':
-    copy_new_sheet()
+    # copy_new_sheet()
     # put_new_value()
+    test()
 
