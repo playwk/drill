@@ -2,6 +2,10 @@
 # @author ZhengZhong,Jiang
 # @time 2017/12/12 19:54
 
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
+
 import os
 import datetime
 from subprocess import Popen, PIPE
@@ -11,7 +15,6 @@ import pymysql
 import configparser
 import xlrd, xlwt
 from xlutils.copy import copy
-
 
 #nowtime = time.strftime('%Y-%m', time.localtime(time.time()))
 nowtime = datetime.datetime.now().strftime('%Y%m%d')
@@ -34,9 +37,8 @@ class Check:
         self.role = role
         config = configparser.ConfigParser()
         config.read('check.conf')
-        res = config.options(self.role)
-        print(res)
-        # config_category= {}
+        #res = config.options(self.role)
+
         try:
             self.host = config.get(self.role, 'host')
             self.port = config.get(self.role, 'port')
@@ -46,17 +48,8 @@ class Check:
             self.check_dbs = config.get(self.role, 'check_dbs')
             self.errlog_path = config.get(self.role, 'errlog_path')
 
-            #config_category['host'] = host
-            #config_category['port'] = port
-            #config_category['user'] = user
-            #config_category['password'] = password
-            #config_category['check_dbs'] = check_dbs
-            #config_category['data_vol'] = data_vol
-            #config_category['errlog_path'] = errlog_path
-
             if self.role == 'master':
                 self.bak_vol = config.get(self.role, 'bak_vol')
-                #config_category['bak_dir'] = bak_dir
         except ValueError:
             print('获取状态值失败!')
 
@@ -82,21 +75,25 @@ class Check:
         return data_vol_used
 
     def status(self):
-        res = Popen("mysql -u%s -p%s -e'status'".format(self.user, self.password),
-                             shell=True, stdout=PIPE)
-        return res.stdout
+        res = Popen("mysql -h%s -P%s -u%s -p%s -e'status'" % (self.host,
+            str(self.port), self.user, self.password), shell=True, stdout=PIPE)
+        return res.stdout.readlines()
+        #return res.stdout.readlines()[-3].rstrip("\n")
 
     def uptime(self):
-        res = Popen("grep '^Uptime'", shell=True, stdin=self.status(), stdout=PIPE)
-        return res.stdout
+        #res = Popen("grep '^Uptime'", shell=True, stdin=self.status(), stdout=PIPE)
+        #return res.stdout
+        res = self.status()[-5].strip("\n")
+        return res.split(':')[1].strip("\t")
 
     def basestatus(self):
-        res = Popen("grep '^Threads'", shell=True, stdin=self.status(), stdout=PIPE)
-        return res.stdout
+        #res = Popen("grep '^Threads'", shell=True, stdin=self.status(), stdout=PIPE)
+        #print(res.stdout)
+        res = self.status()
+        return res[-3].strip("\n")
 
     def data_size(self):
-        res = Popen("mysql -h%s -P%s -u%s -p%s -e'SELECT concat(truncate((sum(DATA_LENGTH)+sum(INDEX_LENGTH))/1024/1024, 2), 'MB') "
-                  "as data_size FROM information_schema.TABLES where TABLE_SCHEMA=%s'"
+        res = Popen("mysql -h%s -P%s -u%s -p%s -e'SELECT concat(truncate((sum(DATA_LENGTH)+sum(INDEX_LENGTH))/1024/1024, 2), 'MB') as data_size FROM information_schema.TABLES where TABLE_SCHEMA=%s'"
                   % (self.host, self.port,
                      self.user, self.password,
                      self.check_dbs), shell=True, stdout=PIPE)
@@ -119,7 +116,6 @@ class Check:
         except pymysql.Error as e:
             print("pymysql Error!", e)
             return False
-
 
     def log_alarm(self):
         log_filter = Popen("grep %s %s".format(nowtime, self.errlog_path), shell=True,
@@ -177,7 +173,6 @@ class Check:
     #         check_res['db_bak'] =
     #     return check_res
 
-
     def copy_new_sheet(self):
         rb = xlrd.open_workbook('mmc_db_check.xls', formatting_info=True)
         wb = copy(rb)
@@ -220,6 +215,8 @@ class Check:
 
 if __name__ == '__main__':
     master_check = Check('master')
+    print(master_check.uptime())
+    print(master_check.basestatus())
     master_check.copy_new_sheet()
     master_check.put_new_value()
     slave_check = Check('slave')
