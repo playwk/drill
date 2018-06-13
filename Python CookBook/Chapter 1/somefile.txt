@@ -1,0 +1,22 @@
+Given all of this, together with GitHub, we see three clear opportunities ahead.
+First, we will empower developers at every stage of the development lifecycle –
+from ideation to collaboration to deployment to the cloud. Going forward, GitHub
+will remain an open platform, which any developer can plug into and extend.
+Developers will continue to be able to use the programming languages,
+tools and operating systems of their choice for their projects –
+and will still be able to deploy their code on any cloud and any device.
+Second, we will accelerate enterprise developers’ use of GitHub,
+with our direct sales and partner channels and access to Microsoft’s global cloud infrastructure and services.
+Finally, we will bring Microsoft’s developer tools and services to new audiences.
+Most importantly, we recognize the responsibility we take on with this agreement.
+I love python.
+We are committed to being stewards of the GitHub community,
+which will retain its developer-first ethos,
+operate independently and remain an open platform.
+We will always listen to developer feedback and invest in both fundamentals and new capabilities.
+Once the acquisition closes later this year,
+GitHub will be led by CEO Nat Friedman, an open source veteran and founder of Xamarin,
+who will continue to report to Microsoft Cloud + AI Group Executive Vice President Scott Guthrie;
+GitHub CEO and Co-Founder Chris Wanstrath will be a technical fellow at Microsoft, also reporting to Scott.
+You can see how Chris, Nat and I envision the opportunity ahead in this public presentation.
+Together we will continue to advance GitHub as a platform loved by developers and trusted by organizations.
